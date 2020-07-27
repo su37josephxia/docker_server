@@ -2,6 +2,10 @@ version: '3.1'
 services:
   redis:
     image: redis
+    volumes:
+      # 目录映射
+      # - "${REDIS_DIR}/conf:/usr/local/etc/redis"
+      - "./data:/data"
     ports:
       - "6379:6379" 
   

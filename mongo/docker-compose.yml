@@ -1,13 +1,39 @@
 version: '3.1'
 services:
-  mongo:
-    image: mongo
+  mongo-db:
+    image: mongo:latest
+    container_name: mongo-db
+    # network_mode: "host"
     restart: always
     ports:
-        - 27017:27017
+      - 27017:27017
+    environment:
+      TZ: Asia/Shanghai
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: kaikeba666
+    volumes:
+      - ./data/db:/data/db
+      # - /etc/localtime:/etc/localtime
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
   mongo-express:
-    image: mongo-express
+    image: mongo-express:latest
+    container_name: mongo-express
     restart: always
+    depends_on:
+      - mongo-db
+    # links:
+    #   - mongo-db:mongodb
     ports:
       - 8081:8081
-  
+    environment:
+      ME_CONFIG_OPTIONS_EDITORTHEME: 3024-night
+      ME_CONFIG_MONGODB_SERVER: mongo-db
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: kaikeba666
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: kaikeba666
