@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  redis:
+    image: redis
+    # ports:
+    #   - "6379:6379"
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_USER: sentry
+  sentry:
+    image: sentry
+    environment:
+      SENTRY_SECRET_KEY: ^-iqv65sf^_v+*0h^x=g0knrvs%x0vth(b4sfxu5u&1%sut*^&
+    ports:
+        - "9000:9000"
+      
