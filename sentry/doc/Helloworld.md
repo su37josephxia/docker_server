@@ -5,19 +5,44 @@ https://juejin.cn/post/6844903657381593096
 https://www.cnblogs.com/xiaoqi/p/sentry.html
 
 
-# 视频
-## 神测数据 sentry
-https://www.bilibili.com/video/BV1Rb4y1o7VN?from=search&seid=34317299604745136
-
-## Vue+Docker+Sentry
-https://www.bilibili.com/video/BV1UZ4y1p7MF
-
-## Node、Docker的CI/CD、DevOps实践
-https://www.bilibili.com/video/BV1jf4y127jT
-
-
-# Sentry 文章
-
-
 # 安装指令
 yarn add @sentry/browser
+
+
+# docker 安装
+```
+git clone git@github.com:getsentry/onpremise.git
+```
+
+mac处理realpath问题
+```
+brew install coreutiles
+```
+在 /home/.bash_profile 中新建函数，如果没有此文件则新建
+```bash
+#!/bin/bash
+function realpath(){
+[[KaTeX parse error: Expected 'EOF', got '&' at position 10: 1 = /*]] &̲& echo "1" || e…{1#./}"
+}
+```
+
+进入项目
+```
+cd onpremise
+./install.sh
+```
+
+```
+docker volume create --name=sentry-data
+docker volume create --name=sentry-postgres
+docker volume create --name=sentry-redis
+docker volume create --name=sentry-zookeeper
+docker volume create --name=sentry-kafka
+docker volume create --name=sentry-clickhouse
+docker volume create --name=sentry-symbolicator 
+```
+
+
+```
+```
+
